@@ -24,12 +24,13 @@ class FileRepository
                 mkdir(public_path().'/storage/'.$this->folder, 0777, TRUE);
             }
             $fileName = time().'_'.$originalImage->getClientOriginalName();
-            $path = public_path().'/storage/'.$this->folder. $fileName;
+            $pathPublic = '/storage/'.$this->folder. $fileName;
+            $path = public_path(). $pathPublic;
             $thumbnailImage->save($path);
         }
         
         try {
-            $this->data = $path;
+            $this->data = $pathPublic;
         } catch(\Exception $e) {
             $this->data['message'] = $e->getMessage();
             $this->data['status_response'] =  JsonResponse::HTTP_UNAVAILABLE_FOR_LEGAL_REASONS;
