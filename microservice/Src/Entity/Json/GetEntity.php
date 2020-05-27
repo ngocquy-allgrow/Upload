@@ -19,17 +19,4 @@ class GetEntity extends BasicEntity
         if (isset($data->data))
             $this->setResponse($data->data);
     }
-
-    /**
-     * HTTP_NOT_ACCEPTABLE is not accept.
-     * Param requried incorect.
-     * 
-     * Code 195: Missing or invalid url parameter
-     */
-    public function setHeaderMiddlewareResponse()
-    {
-        $this->setStatus(JsonResponse::HTTP_NOT_ACCEPTABLE);
-        $this->setVerifyCode(195);
-        $this->setMessageStatus('secret key wrong !');
-    }
 }
