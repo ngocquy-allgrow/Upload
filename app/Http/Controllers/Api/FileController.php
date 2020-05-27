@@ -8,7 +8,6 @@ use MicroService\Src\Repository\FileRepository;
 
 class FileController
 {
-    protected $params_request;
     protected $_fileRepository;
 
     public function __construct(FileRepository $fileRepository)
