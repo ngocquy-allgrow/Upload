@@ -17,14 +17,15 @@ class FileRepository
 
     public function uploadRepository($request)
     {
-        if ($request->file('file')) {
+        $folderUser = $request->input('folder');
+        if ($request->file('file') && $folderUser) {
             $originalImage= $request->file('file');
             $thumbnailImage = ImageIntervention::make($originalImage);
-            if (!\File::exists(public_path().'/storage/'. $this->folder)) {
-                mkdir(public_path().'/storage/'.$this->folder, 0777, TRUE);
+            if (!\File::exists(public_path().'/storage/'. $this->folder .'/'. $folderUser)) {
+                mkdir(public_path().'/storage/'. $this->folder .'/'. $folderUser, 0777, TRUE);
             }
-            $fileName = time().'_'.$originalImage->getClientOriginalName();
-            $pathPublic = '/storage/'.$this->folder. $fileName;
+            $fileName = $originalImage->getClientOriginalName();
+            $pathPublic = '/storage/'. $this->folder. '/'. $folderUser. $fileName;
             $path = public_path(). $pathPublic;
             $thumbnailImage->save($path);
         }
