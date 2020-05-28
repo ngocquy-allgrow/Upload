@@ -25,7 +25,7 @@ class FileRepository
                 mkdir(public_path().'/storage/'. $this->folder .'/'. $folderUser, 0777, TRUE);
             }
             $fileName = $originalImage->getClientOriginalName();
-            $pathPublic = '/storage/'. $this->folder. '/'. $folderUser .'/'. $fileName;
+            $pathPublic = '/storage/'. $this->folder. $folderUser .'/'. $fileName;
             $path = public_path(). $pathPublic;
             $thumbnailImage->save($path);
         }
